@@ -1,0 +1,35 @@
+---
+
+- name: Apt update
+  apt:
+    update_cache: yes
+
+- name: Apt upgrade
+  apt:
+    upgrade: dist
+
+- name: Apt install
+  apt:
+    name: "{{ item }}"
+  with_items: "{{ packages }}"
+
+- name: Install 'unattended-upgrades' to update security automaticaly
+  apt:
+    name: unattended-upgrades
+    update_cache: yes
+  tags:
+    - autoupgrade
+
+- name: Copy unattended-upgrades' & 'auto-upgrades' setting
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  with_items:
+    - "20auto-upgrades"
+    - "50unattended-upgrades"
+  tags:
+    - autoupgrade
