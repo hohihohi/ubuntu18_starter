@@ -1,0 +1,30 @@
+---
+
+- name: Set hostname
+  hostname:
+    name: "{{ hostname }}"
+
+- name: Create user groups
+  group:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
+    state: present
+  with_items: "{{ user_groups }}"
+  when: user_groups is defined
+
+- name: Create users
+  user:
+    name: "{{ item.name }}"
+    groups:  "{{ item.groups }}"
+    shell: /bin/bash
+  with_items: "{{ users }}"
+  when: users is defined
+
+- name: Add public key for user
+  authorized_key:
+    key: "{{ lookup('file', '/root/.ssh/authorized_keys') }}"
+    user: "{{ item.name }}"
+  with_items:
+      - "{{ users }}"
+
+# - name: Set hosts

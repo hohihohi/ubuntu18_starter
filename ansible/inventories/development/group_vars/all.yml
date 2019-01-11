@@ -1,0 +1,41 @@
+---
+
+hostname: ubuntu18
+user_groups:
+  - name: hogeg
+    gid: 1001
+  - name: fugag
+    gid: 1002
+users:
+  - name: hoge
+    groups:
+      - hogeg
+      - sudo
+  - name: fuga
+    groups:
+      - fugag
+packages:
+  - vim
+  - curl
+  - ufw
+ssh:
+  port: 2222
+  permit_root_login: no
+  password_authentication: no
+  use_pam: no
+network:
+  fw:
+    rules:
+      - rule: allow
+        proto: tcp
+        from_ip: any
+        to_port: 80
+      - rule: allow
+        proto: tcp
+        from_ip: any
+        to_port: 443
+      - rule: allow
+        proto: tcp
+        from_ip: any
+        to_port: 2222
+    policy: deny
