@@ -20,9 +20,9 @@ packages:
   - ufw
 ssh:
   port: 2222
-  permit_root_login: no
-  password_authentication: no
-  use_pam: no
+  permit_root_login: "without-password"
+  password_authentication: "no"
+  use_pam: "yes"
 network:
   fw:
     rules:

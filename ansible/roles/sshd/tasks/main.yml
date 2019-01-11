@@ -1,0 +1,13 @@
+---
+
+- name: Put sshd_config
+  template:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+
+# You should reload ssh daemon after update sshd_config, but ansible use ssh!
+#- name: Restart service sshd
+#  systemd:
+#    name: ssh
+#    state: restarted
+#    daemon_reload: yes

@@ -5,3 +5,4 @@
   roles:
     - host
     - package
+    - sshd
