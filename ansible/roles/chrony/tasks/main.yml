@@ -1,0 +1,12 @@
+---
+
+- name: Put chrony config
+  template:
+    src: chrony.conf
+    dest: /etc/chrony/chrony.conf
+
+- name: Restart chronyd
+  systemd:
+    name: chronyd
+    state: restarted
+    enabled: yes
