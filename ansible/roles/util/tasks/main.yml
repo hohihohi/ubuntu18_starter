@@ -1,0 +1,7 @@
+---
+
+- name: Import locale playbook
+  import_tasks: locale.yml
+
+- name: Import log playbook
+  import_tasks: log.yml

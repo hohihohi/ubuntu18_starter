@@ -21,7 +21,6 @@ packages:
   - jq
   - sysstat
   - telnet
-  - sysv-rc-conf
 ssh:
   port: 2222
   permit_root_login: "without-password"
@@ -43,3 +42,6 @@ network:
         from_ip: any
         to_port: 2222
     policy: deny
+journald:
+  storage: persistent
+  system_max_use: 1000

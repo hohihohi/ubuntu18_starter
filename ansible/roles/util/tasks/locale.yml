@@ -1,0 +1,25 @@
+---
+
+- name: Install language-pack-ja
+  apt:
+    name: language-pack-ja
+    update_cache: yes
+
+- name: Create locale ja_JP.UTF-8
+  locale_gen:
+    name: ja_JP.UTF-8
+    state: present
+
+- name: Change locale
+  check_mode: no
+  command: update-locale LANG=ja_JP.UTF-8
+
+- name: Update link of timezone
+  file:
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    dest: /etc/localtime
+    state: link
+
+- name: Set timezone
+  check_mode: no
+  command: timedatectl set-timezone Asia/Tokyo

@@ -1,0 +1,41 @@
+---
+
+- name: Export timestamp to history
+  lineinfile:
+    path: /etc/profile
+    regexp: "^export HISTTIMEFORMAT="
+    line: 'export HISTTIMEFORMAT="%Y/%m/%d %T "'
+    backup: yes
+
+- name: Export timestamp to prompt
+  lineinfile:
+    path: /root/.bashrc
+    line: "{{ 'PS1=\"[\\D{%Y/%m/%d %T}] $PS1\"' }}"
+    backup: yes
+
+- name: Put sysstat setting
+  copy:
+    src: sysstat
+    dest: /etc/default/sysstat
+
+- name: Update cron about sysstat
+  copy:
+    src: crond-sysstat
+    dest: /etc/cron.d/sysstat
+
+- name: Restart sysstat
+  service:
+    name: sysstat
+    state: restarted
+    enabled: yes
+
+- name: Put journald config
+  template:
+    src: journald.conf
+    dest: /etc/systemd/journald.conf
+
+- name: Restart journald
+  systemd:
+    name: systemd-journald
+    state: restarted
+    enabled: yes
