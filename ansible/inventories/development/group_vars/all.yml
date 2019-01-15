@@ -18,6 +18,10 @@ packages:
   - vim
   - curl
   - ufw
+  - jq
+  - sysstat
+  - telnet
+  - sysv-rc-conf
 ssh:
   port: 2222
   permit_root_login: "without-password"
