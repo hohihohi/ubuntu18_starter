@@ -21,6 +21,10 @@ packages:
   - jq
   - sysstat
   - telnet
+  - make
+  - libcurses-ui-perl
+  - libterm-readkey-perl
+  - libcurses-perl
 ssh:
   port: 2222
   permit_root_login: "without-password"

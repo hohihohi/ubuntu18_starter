@@ -10,3 +10,7 @@
     name: chronyd
     state: restarted
     enabled: yes
+
+- name: Start chronyd automaticaly
+  check_mode: no
+  command: sysv-rc-conf chronyd on

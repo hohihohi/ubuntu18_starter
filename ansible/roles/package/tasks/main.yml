@@ -33,3 +33,15 @@
     - "50unattended-upgrades"
   tags:
     - autoupgrade
+
+- name: Unarchive sysv-rc-conf
+  unarchive:
+    src: http://archive.ubuntu.com/ubuntu/pool/universe/s/sysv-rc-conf/sysv-rc-conf_0.99.orig.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+
+- name: Make install about sysv-rc-conf
+  become: yes
+  make:
+    chdir: /usr/local/bin/sysv-rc-conf-0.99
+    target: install
