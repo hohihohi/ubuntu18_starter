@@ -1,0 +1,7 @@
+---
+
+- name: Import netplan playbook
+  import_tasks: netplan.yml
+
+- name: Import ufw playbook
+  import_tasks: fw.yml

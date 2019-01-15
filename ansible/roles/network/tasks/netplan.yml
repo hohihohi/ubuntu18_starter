@@ -1,0 +1,11 @@
+---
+
+- name: Put netplan config
+  template:
+    src: 01-netcfg.yaml
+    dest: /etc/netplan/01-netcfg.yaml
+
+- name: Apply netplan setting
+  become: yes
+  check_mode: yes
+  command: "netplan apply"

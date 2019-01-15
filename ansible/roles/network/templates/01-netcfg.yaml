@@ -1,0 +1,27 @@
+# This file describes the network interfaces available on your system
+# For more information, see netplan(5).
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        ens160:
+            dhcp4: yes
+            dhcp6: yes
+            dhcp-identifier: mac
+        ens192:
+            {% if network is defined and network.private_ip is defined %}
+            dhcp4: no
+            dhcp6: no
+            addresses: [{{ network.private_ip }}]
+            gateway4: {{ network.gateway }}
+            {% else %}
+            dhcp4: yes
+            dhcp6: yes
+            dhcp-identifier: mac
+            {% endif %}
+            nameservers:
+                addresses: [8.8.8.8,8.8.4.4]
+        ens224:
+            dhcp4: yes
+            dhcp6: yes
+            dhcp-identifier: mac

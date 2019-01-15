@@ -1,0 +1,24 @@
+---
+
+- name: Disable ufw
+  ufw:
+    state: disabled
+
+- name: Apply ufw rules
+  ufw:
+    rule: "{{ item.rule }}"
+    proto: "{{ item.proto }}"
+    from_ip: "{{ item.from_ip }}"
+    to_port: "{{ item.to_port | default(None) }}"
+  with_items: "{{ network.fw.rules }}"
+  when: "network is defined and network.fw is defined and network.fw.rules is defined"
+
+- name: Apply ufw policy
+  ufw:
+    policy: "{{ network.fw.policy }}"
+  when: "network is defined and network.fw is defined and network.fw.policy is defined"
+
+- name: Enable ufw
+  ufw:
+    state: enabled
+  when: "network is defined and network.fw is defined and network.fw.rules is defined and network.fw.policy is defined"
