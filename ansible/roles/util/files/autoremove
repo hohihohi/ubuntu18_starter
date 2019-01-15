@@ -1,0 +1,2 @@
+#!/bin/sh
+0 0 * * 1 root apt -y -f autoremove 2>&1 | logger -t autoremove  # every monday, 0:00

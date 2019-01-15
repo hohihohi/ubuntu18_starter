@@ -5,3 +5,10 @@
 
 - name: Import log playbook
   import_tasks: log.yml
+
+- name: Set cron about autoremove
+  become: yes
+  copy:
+    src: autoremove
+    dest: /etc/cron.d/autoremove
+    mode: 644
