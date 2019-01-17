@@ -6,3 +6,4 @@
     - host
     - package
     - sshd
+    - role: nickjj.docker

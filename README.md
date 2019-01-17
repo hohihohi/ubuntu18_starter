@@ -4,6 +4,7 @@ ansible playbook to set up ubuntu18
 ## Getting Started
 
 ```shell
+ansible-galaxy install -r requirements.yml
 ansible-playbook -i inventories/development provision.yml --diff -v -K
 ```
 

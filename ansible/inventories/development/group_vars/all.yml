@@ -53,3 +53,6 @@ dns:
   ips:
     - 8.8.8.8
     - 8.8.4.4
+docker__edition: "ce"
+docker__channel: ["stable"]
+docker__version: "18.06"
