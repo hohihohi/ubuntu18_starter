@@ -11,7 +11,7 @@
     state: present
 
 - name: Change locale
-  check_mode: no
+  ignore_errors: "{{ ansible_check_mode }}"
   command: update-locale LANG=ja_JP.UTF-8
 
 - name: Update link of timezone
