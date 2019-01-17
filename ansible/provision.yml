@@ -6,4 +6,7 @@
     - host
     - package
     - sshd
+    - network
+    - util
+    - chrony
     - role: nickjj.docker
