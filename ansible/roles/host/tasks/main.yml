@@ -21,6 +21,7 @@
   when: users is defined
 
 - name: Add public key for user
+  ignore_errors: "{{ ansible_check_mode }}"
   authorized_key:
     key: "{{ lookup('file', '/root/.ssh/authorized_keys') }}"
     user: "{{ item.name }}"
