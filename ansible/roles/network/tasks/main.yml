@@ -5,3 +5,14 @@
 
 - name: Import ufw playbook
   import_tasks: fw.yml
+
+- name: Put DNS config
+  template:
+    src: resolved.conf
+    dest: /etc/systemd/resolved.conf
+
+- name: Restart service systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: restarted
+    daemon_reload: yes

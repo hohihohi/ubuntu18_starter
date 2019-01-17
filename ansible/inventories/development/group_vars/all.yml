@@ -49,3 +49,7 @@ network:
 journald:
   storage: persistent
   system_max_use: 1000
+dns:
+  ips:
+    - 8.8.8.8
+    - 8.8.4.4
