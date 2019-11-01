@@ -6,7 +6,8 @@ ansible playbook to set up ubuntu18
 ```shell
 ansible-galaxy install -r requirements.yml
 cd ansible
-ansible-playbook -i inventories/development provision.yml --diff -v -K
+ansible --connection local -i inventories/development ubuntu18 -m ping
+ansible-playbook --connection local -i inventories/development provision.yml --diff -v -K
 ```
 
 ### Prerequisites
