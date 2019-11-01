@@ -1,7 +1,9 @@
 ---
 
+# Default setting skips this task
 - name: Import locale playbook
   import_tasks: locale.yml
+  when: language != "en_US.UTF-8"
 
 - name: Import log playbook
   import_tasks: log.yml
