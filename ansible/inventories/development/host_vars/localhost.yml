@@ -1,0 +1,6 @@
+---
+
+ansible_port: 22
+ansible_host: 127.0.0.1
+ansible_user: root
+ansible_winrm_server_cert_validation: ignore
